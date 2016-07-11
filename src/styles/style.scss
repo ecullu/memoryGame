@@ -35,7 +35,6 @@ h5{
 .container{
 	width: 100%;
 	height: 100vh;
-	/*margin: auto;*/
 }
 
 .card-wrapper{
@@ -61,6 +60,7 @@ img{
 	width: 150px;
 	height: 150px;
 	padding: 0.5em;
+	max-width: 100%;
 }
 
 .flip-front{
@@ -77,6 +77,9 @@ img{
 		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
 		transition: -webkit-transform 0.5s linear 0s;
+		border: 1px solid transparent;
+		padding: 1%;
+		border-radius: 10%;
 }
 
 .image-front{
@@ -112,12 +115,6 @@ img{
 	transition: opacity 10s ease-in;
 }
 
-/*.hide-image{
-	opacity: 0;
-	transition: opacity 2s ease-in;
-
-}*/
-
 .post-game .show-image{
 	opacity: 1;
 	transition: all 5s ease-in;
@@ -135,9 +132,8 @@ img{
     height: 50%;
     transform: translate(-50%,-50%);
 }
+
 .hide-victory{
 	display: none;
 	opacity: 0;
-	/*transition: opacity 4s ease-in;*/
-
 }

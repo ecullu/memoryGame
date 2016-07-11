@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 
 const app = function() {
-
+	//Constructor to create images
 	const Img = function (imgUrl, imgId){
 		this.url = imgUrl
 		this.id = imgId
@@ -12,15 +12,14 @@ const app = function() {
 	}
 	var i = 0
 	const imgArray = []
-	const photoStr = 'http://bit.ly/29H0REb http://bit.ly/29p1i16 http://bit.ly/29p1EVp http://bit.ly/29lpWDJ http://bit.ly/29r6aoT http://bit.ly/29CEm0n http://bit.ly/29xQwr0 http://bit.ly/29yAxe0 http://bit.ly/29yAzmc http://bit.ly/29mdleJ'
-	// const photoStr = 'http://bit.ly/29p1i16 http://bit.ly/29H0REb'
+	const photoStr = 'http://bit.ly/29J89qZ http://bit.ly/29A4HeQ http://bit.ly/29H0REb http://bit.ly/29p1i16 http://bit.ly/29p1EVp http://bit.ly/29lpWDJ http://bit.ly/29r6aoT http://bit.ly/29xQwr0 http://bit.ly/29yAzmc http://bit.ly/29mdleJ'
 	const photoArr = photoStr.split(' ')
-	// console.log('photo arrr>>> ',photoArr)
+	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
 		imgArray.push(new Img(url,i))
 		i += 2
 	})
-
+	//define shuffle function
 	function shuffle(array) {
 	  var m = array.length, t, i;
 
@@ -40,7 +39,6 @@ const app = function() {
 	}
 
 	
-
 	const GameView = React.createClass({
 		getInitialState: function(){
 			return {
@@ -63,7 +61,6 @@ const app = function() {
 					card = img
 				}
 			})
-			// console.log('find card by id',card)
 			return card
 		},
 
@@ -80,19 +77,20 @@ const app = function() {
 			console.log('updating states')
 			this.state.selectingCard = false
 			this.state.selectedCards.splice(0)
-			// console.log('selected card array >>' + this.state.selectedCards)
 			this.setState({
 			selectingCard: this.state.selectingCard,
 			selectedCards: this.state.selectedCards
 			})
 		},
 
+		//updates the matched states if when selected cards are matched
 		_updateMatchedCards: function(card1, card2){
 			card1.matched = true
 			card2.matched = true
 			console.log('card1 >>',card1)
 		},
 
+		//checks if all cards are matched (game over)
 		_endGame: function(){
 			var allMatched = true
 			this.state.cardList.forEach(function(card){
@@ -105,7 +103,6 @@ const app = function() {
 		},
 
 		_selectCard: function(cardId){
-			// console.log('card id in _selectCard',cardId)
 			if(this.state.selectedCards.length < 2){
 				this.state.selectingCard = true
 				this.state.selectedCards.push(parseInt(cardId))
@@ -115,7 +112,6 @@ const app = function() {
 				})
 			}
 			if(this.state.selectedCards.length === 2){
-					// console.log(this._findCardById(this.state.selectedCards[0]))
 					var card1 = this._findCardById(this.state.selectedCards[0])
 					var card2 = this._findCardById(this.state.selectedCards[1])
 					console.log('comparing cards>>> ' + card1 + card2)
@@ -129,14 +125,12 @@ const app = function() {
 						setTimeout(this._updateStates, 2000)
 					}
 				}
-
-			console.log('selected card array length >> ',this.state.selectedCards.length)
 		},
 
+		//creates a copy of image array to duplicate the images
 		_cloneArray: function(){
 			var shuffledArr = shuffle(imgArray)
 			var clonedShuffle = JSON.parse(JSON.stringify(shuffledArr))
-			// console.log('original images',shuffledArr)
 			return shuffledArr.concat(clonedShuffle.map((img)=>{
 				img.id = img.id + 1
 				return img
@@ -153,7 +147,6 @@ const app = function() {
 		},
 		
 		render: function () {
-			// console.log('renderin card list >>',this.state.cardList)
 			var postGameDiv = 'post-game hide-victory'
 			var postGameImgDiv = 'post-game-img'
 
@@ -183,11 +176,8 @@ const app = function() {
 	})
 
 	const Card = React.createClass({
+		//When card is selected, runs a selectCard function in Gameview
 		_select: function(e){
-			// console.log('_select in card',this.props.selectCard)
-			// this.props.selectCard(e.target)
-			// console.log('this in Card >>>', this)
-			// console.log(e.target.id)
 				this.props.selectCard(e.target.id)
 		},
 
@@ -195,10 +185,8 @@ const app = function() {
 			var cardDiv = 'card'
 			var imageBack = 'image-back',
 				imageFront = 'image-front'
-			// console.log('rendering card view')
-			// console.log('selected cards >>> ',this.props.selectedCards)
-			// console.log('rendered card id', this.props.card.id )
-			// console.log('selecting cards >>> ',this.props.selectingCard)
+
+			//flips only 2 cards at the same time	
 			if(this.props.selectedCards.length <= 2){
 				if(this.props.selectedCards.includes(this.props.card.id)){
 					console.log('flip the card')
@@ -206,7 +194,7 @@ const app = function() {
 					imageBack = 'flip-back' 
 				}
 			}
-
+			//hides the card if it is matched
 			if(this.props.card.matched){
 				cardDiv = 'card hide-card'
 			}
