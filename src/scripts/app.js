@@ -165,7 +165,9 @@ const app = function() {
 						{this._getJsxArray(this.state.cardList)}
 					</div>
 					<div className={postGameDiv}>
-						<img className={postGameImgDiv} src="https://media.giphy.com/media/iPTTjEt19igne/giphy.gif"/>
+						<h1>Congratulations</h1>
+						<h2>You've matched all cards</h2>
+						<button>Play again</button>
 					</div>
 				</div>
 				) 
