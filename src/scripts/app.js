@@ -12,7 +12,7 @@ const app = function() {
 	}
 	var i = 0
 	const imgArray = []
-	const photoStr = 'http://bit.ly/29J89qZ http://bit.ly/29A4HeQ http://bit.ly/29H0REb http://bit.ly/29p1i16 http://bit.ly/29p1EVp http://bit.ly/29lpWDJ http://bit.ly/29r6aoT http://bit.ly/29xQwr0 http://bit.ly/29yAzmc http://bit.ly/29mdleJ'
+	const photoStr = '/images/image_1.jpg /images/image_2.jpg /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg'
 	const photoArr = photoStr.split(' ')
 	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
