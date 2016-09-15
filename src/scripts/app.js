@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
+//  /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg
 const app = function() {
 	//Constructor to create images
 	const Img = function (imgUrl, imgId){
@@ -12,7 +12,7 @@ const app = function() {
 	}
 	var i = 0
 	const imgArray = []
-	const photoStr = '/images/image_1.jpg /images/image_2.jpg /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg'
+	const photoStr = '/images/image_1.jpg /images/image_2.jpg'
 	const photoArr = photoStr.split(' ')
 	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
@@ -141,9 +141,25 @@ const app = function() {
 		_getJsxArray: function(array){
 			var self = this
 			var gameCards = array.map(function(singleCard){
-				return <Card card={singleCard} selectCard={self._selectCard} selectedCards={self.state.selectedCards} selectingCard={self.state.selectingCard}/>
+				return <Card key={singleCard.id}card={singleCard} selectCard={self._selectCard} selectedCards={self.state.selectedCards} selectingCard={self.state.selectingCard}/>
 			})
 			return gameCards
+		},
+
+		// Play again
+		_replay: function(){
+			//gathers all matched cards
+			let matchedCards = this.state.cardList
+			// shuffles cards
+			shuffle(matchedCards)
+			//updates the cards matched attribute
+			matchedCards.forEach(function(card){
+				card.matched = false
+			})
+			//updates the cardlist state
+			this.setState({
+				cardList: matchedCards
+			})
 		},
 		
 		render: function () {
@@ -165,9 +181,9 @@ const app = function() {
 						{this._getJsxArray(this.state.cardList)}
 					</div>
 					<div className={postGameDiv}>
-						<h1>Congratulations</h1>
+						<h1>Congratulations!</h1>
 						<h2>You've matched all cards</h2>
-						<button>Play again</button>
+						<button onClick={this._replay}>Play again</button>
 					</div>
 				</div>
 				) 
@@ -178,6 +194,11 @@ const app = function() {
 	})
 
 	const Card = React.createClass({
+		// getInitialState: function(){
+		// 	return {
+		// 	cardMatchedState: this.props.card.matched
+		// 	}
+		// },
 		//When card is selected, runs a selectCard function in Gameview
 		_select: function(e){
 				this.props.selectCard(e.target.id)
@@ -187,7 +208,7 @@ const app = function() {
 			var cardDiv = 'card'
 			var imageBack = 'image-back',
 				imageFront = 'image-front'
-
+			// console.log('matched status', this.state.cardMatchedState)
 			//flips only 2 cards at the same time	
 			if(this.props.selectedCards.length <= 2){
 				if(this.props.selectedCards.includes(this.props.card.id)){
