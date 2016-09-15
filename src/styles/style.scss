@@ -57,7 +57,7 @@ h5{
     overflow: visible;
 }
 
-img{
+.card img{
 	width: 150px;
 	height: 150px;
 	padding: 0.5em;
@@ -102,40 +102,52 @@ img{
 
 .hide-card{
 	opacity: 0;
-	transition: opacity 2s ease-in
+	transition: opacity 1.5s ease-in
 }
 
-.post-game{
-    display: block;
-    opacity: 1;
+.post-game-wrapper{
+    opacity: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background: rgba(12, 10, 12,0.4);
     position: fixed;
-	transition: opacity 10s ease-in;
 }
 
-.post-game .show-image{
+.show-msg{
 	opacity: 1;
-	transition: all 5s ease-in;
+	transition: all 3s ease-in-out;
+	-webkit-transition: opacity 3s ease-in-out;
+	-moz-transition: opacity 3s ease-in-out;
+    -o-transition: opacity 3s ease-in-out;
+    transition-delay: 1s;
+    -webkit-transition-delay: 1s;
+	-moz-transition-delay: 1s;
+    -o-transition-delay: 1s;
 }
 
-.post-game-img{
-    border: 4px solid #ddd;
-    border-radius: 3%;
-    padding: 0px;
-	opacity: 0;
+.post-game-msg{
+	background-color: snow;
+    border: 0.1em solid #ddd;
+    border-radius: 1em;
+    text-align: center;
+    padding: 1em;
+	opacity: 1;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: auto;
     transform: translate(-50%,-50%);
 }
 
-.hide-victory{
-	display: none;
+.post-game-msg img {
+    max-width: 80%;
+}
+
+.hide-msg{
+	/*display: none;*/
+	visibility: hidden;
 	opacity: 0;
 }
 

@@ -163,12 +163,12 @@ const app = function() {
 		},
 		
 		render: function () {
-			var postGameDiv = 'post-game hide-victory'
-			var postGameImgDiv = 'post-game-img'
+			var postGameDiv = 'post-game-wrapper hide-msg'
+			var postGameMessageDiv = 'post-game-msg hide-msg'
 
 			if(this._endGame()){
-				postGameDiv = 'post-game'
-				postGameImgDiv = 'post-game-img show-image '
+				postGameDiv = 'post-game-wrapper show-msg'
+				postGameMessageDiv = 'post-game-msg show-msg'
 			}
 
 			return (
@@ -181,9 +181,11 @@ const app = function() {
 						{this._getJsxArray(this.state.cardList)}
 					</div>
 					<div className={postGameDiv}>
-						<h1>Congratulations!</h1>
-						<h2>You've matched all cards</h2>
-						<button onClick={this._replay}>Play again</button>
+						<div className={postGameMessageDiv}>
+							<img src="/images/congrats.png"/>
+							<h2>You've matched all cards</h2>
+							<button onClick={this._replay}>Play again</button>
+						</div>
 					</div>
 				</div>
 				) 
