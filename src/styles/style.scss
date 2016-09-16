@@ -1,5 +1,10 @@
+@font-face{
+	font-family: 'Gotham Rounded Book';
+	src: url("./GothamRoundedBook_21018.ttf") format('truetype');
+}
+
 * {
-	font-family: Helvetica, sans-serif;
+	font-family: 'Gotham Rounded Book', sans-serif;
 	box-sizing: border-box;
 }
 

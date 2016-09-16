@@ -9,6 +9,7 @@ const app = function() {
 		this.id = imgId
 		this.pairId = imgId
 		this.matched = false
+		this.numberofClicks = 0
 	}
 	var i = 0
 	const imgArray = []
@@ -102,7 +103,23 @@ const app = function() {
 			return allMatched
 		},
 
+		_countClick: function (){
+			let totalClicks = 0
+			
+				this.state.cardList.forEach(function(card){
+					totalClicks += card.numberofClicks
+				})
+			
+			console.log('total click >', totalClicks)
+			return totalClicks
+		},
+
 		_selectCard: function(cardId){
+			console.log('cardList>>', this.state.cardList)
+			let selectedCard = this.state.cardList.filter(function(card){				
+				return card.id === parseInt(cardId)
+			})[0]
+			selectedCard.numberofClicks += 1
 			if(this.state.selectedCards.length < 2){
 				this.state.selectingCard = true
 				this.state.selectedCards.push(parseInt(cardId))
@@ -155,6 +172,7 @@ const app = function() {
 			//updates the cards matched attribute
 			matchedCards.forEach(function(card){
 				card.matched = false
+				card.numberofClicks = 0
 			})
 			//updates the cardlist state
 			this.setState({
@@ -170,6 +188,7 @@ const app = function() {
 			if(this._endGame()){
 				postGameDiv = 'post-game-wrapper show-msg'
 				postGameMessageDiv = 'post-game-msg show-msg'
+				var totalClicks = this._countClick()
 			}
 
 			return (
@@ -185,14 +204,12 @@ const app = function() {
 						<div className={postGameMessageDiv}>
 							<img src="/images/congrats.png"/>
 							<h2>You've matched all cards</h2>
+							<p>Total Clicks: <span><strong>{totalClicks}</strong></span></p>
 							<button className={playAgainBtn} onClick={this._replay}>Play again</button>
 						</div>
 					</div>
 				</div>
-				) 
-
-			
-			
+			) 
 		}
 	})
 
