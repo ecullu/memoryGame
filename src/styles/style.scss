@@ -1,5 +1,5 @@
 * {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: Helvetica, sans-serif;
 	box-sizing: border-box;
 }
 
@@ -13,6 +13,10 @@ body{
 	background-color: #e6cf8b;
 }
 
+h1,h2,h3,h4,h5,h6{
+	letter-spacing: 0.2em;
+	font-family: 'Bangers', cursive;
+}
 #header{
 	background-color: rgba(232, 237, 243, 0.8);
 	border-bottom: 0.7em solid #daad86;
@@ -20,8 +24,6 @@ body{
 }
 #header > *{
 	text-align: center;
-	letter-spacing: 0.2em;
-	font-family: 'Bangers', cursive;
 }
 
 h2{
@@ -128,7 +130,7 @@ h5{
 
 .post-game-msg{
 	background-color: snow;
-    border: 0.1em solid #ddd;
+    border: 0.1em solid #f4c141;
     border-radius: 1em;
     text-align: center;
     padding: 1em;
@@ -149,6 +151,28 @@ h5{
 	/*display: none;*/
 	visibility: hidden;
 	opacity: 0;
+}
+
+.play-again-btn {
+    background-color: tomato;
+    border: 1px solid #ffde66;
+    border-radius: .2em;
+    padding: 1em;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: snow;
+}
+
+.play-again-btn:hover{
+	color: #1e2a2d;
+	cursor: pointer;
+	background-color: #ff7d66;
+}
+
+.play-again-btn:focus{
+	outline: 0;
+	border-color: #668f99;
+	background-color: tomato;
 }
 
 /*Responsive iPad*/

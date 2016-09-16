@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-//  /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg
+// /images/image_2.jpg /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg
 const app = function() {
 	//Constructor to create images
 	const Img = function (imgUrl, imgId){
@@ -12,7 +12,7 @@ const app = function() {
 	}
 	var i = 0
 	const imgArray = []
-	const photoStr = '/images/image_1.jpg /images/image_2.jpg'
+	const photoStr = '/images/image_1.jpg'
 	const photoArr = photoStr.split(' ')
 	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
@@ -165,6 +165,7 @@ const app = function() {
 		render: function () {
 			var postGameDiv = 'post-game-wrapper hide-msg'
 			var postGameMessageDiv = 'post-game-msg hide-msg'
+			var playAgainBtn = 'play-again-btn'
 
 			if(this._endGame()){
 				postGameDiv = 'post-game-wrapper show-msg'
@@ -184,7 +185,7 @@ const app = function() {
 						<div className={postGameMessageDiv}>
 							<img src="/images/congrats.png"/>
 							<h2>You've matched all cards</h2>
-							<button onClick={this._replay}>Play again</button>
+							<button className={playAgainBtn} onClick={this._replay}>Play again</button>
 						</div>
 					</div>
 				</div>
