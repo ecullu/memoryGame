@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// /images/image_2.jpg /images/image_3.jpg /images/image_4.jpg /images/image_5.jpg /images/image_6.jpg /images/image_7.jpg /images/image_8.jpg /images/image_9.jpg /images/image_10.jpg
+
 const app = function() {
 	//Constructor to create images
 	const Img = function (imgUrl, imgId){
@@ -12,8 +12,8 @@ const app = function() {
 	}
 	var i = 0
 	const imgArray = []
-	const photoStr = '/images/image_1.jpg'
-	const photoArr = photoStr.split(' ')
+	const photoStr = '/images/image_1.jpg,/images/image_2.jpg,/images/image_3.jpg,/images/image_4.jpg,/images/image_5.jpg,/images/image_6.jpg,/images/image_7.jpg,/images/image_8.jpg,/images/image_9.jpg,/images/image_10.jpg'
+	const photoArr = photoStr.split(',')
 	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
 		imgArray.push(new Img(url,i))
