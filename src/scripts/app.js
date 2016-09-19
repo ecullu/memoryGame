@@ -203,7 +203,7 @@ const app = function() {
 					<div className={postGameDiv}>
 						<div className={postGameMessageDiv}>
 							<img src="/images/congrats.png"/>
-							<h2>You've matched all cards</h2>
+							<h2>You've matched all the cards</h2>
 							<p>Total Clicks: <span><strong>{totalClicks}</strong></span></p>
 							<button className={playAgainBtn} onClick={this._replay}>Play again</button>
 						</div>
