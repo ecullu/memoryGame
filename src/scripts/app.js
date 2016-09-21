@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
+// ,/images/image_2.jpg,/images/image_3.jpg,/images/image_4.jpg,/images/image_5.jpg,/images/image_6.jpg,/images/image_7.jpg,/images/image_8.jpg,/images/image_9.jpg,/images/image_10.jpg
 const app = function() {
 	//Constructor to create images
 	const Img = function (imgUrl, imgId){
@@ -12,8 +12,9 @@ const app = function() {
 		this.numberofClicks = 0
 	}
 	var i = 0
+	var gameTimer 
 	const imgArray = []
-	const photoStr = '/images/image_1.jpg,/images/image_2.jpg,/images/image_3.jpg,/images/image_4.jpg,/images/image_5.jpg,/images/image_6.jpg,/images/image_7.jpg,/images/image_8.jpg,/images/image_9.jpg,/images/image_10.jpg'
+	const photoStr = '/images/image_1.jpg'
 	const photoArr = photoStr.split(',')
 	//creates images by using contructor and push it to image array
 	photoArr.forEach(function(url){
@@ -45,7 +46,8 @@ const app = function() {
 			return {
 				selectingCard: false,
 				selectedCards: [],
-				cardList: []
+				cardList: [],
+				elapsedTime: 0
 			}
 		},
 
@@ -89,6 +91,28 @@ const app = function() {
 			card1.matched = true
 			card2.matched = true
 			console.log('card1 >>',card1)
+		},
+
+				//increment time
+		_timeCounter: function(){
+			if(!this._endGame()){
+				// console.log('elapsed time>>', this.state.elapsedTime)
+				this.state.elapsedTime += 1
+			}
+			else{
+				clearInterval(gameTimer)
+			}
+		},
+
+		//starts timer
+		_startTimer: function(){
+			document.getElementById('pre-game-wrapper').style.opacity = 0
+			setTimeout(function(){
+				if(document.getElementById('pre-game-wrapper').style.visibility !== "hidden"){
+					document.getElementById('pre-game-wrapper').style.visibility = "hidden"
+				}
+			},1500)
+			gameTimer = setInterval(this._timeCounter,1000)
 		},
 
 		//checks if all cards are matched (game over)
@@ -165,6 +189,8 @@ const app = function() {
 
 		// Play again
 		_replay: function(){
+			//restart game timer
+			this._startTimer()
 			//gathers all matched cards
 			let matchedCards = this.state.cardList
 			// shuffles cards
@@ -174,21 +200,33 @@ const app = function() {
 				card.matched = false
 				card.numberofClicks = 0
 			})
-			//updates the cardlist state
+			//updates the cardlist and elapsedTime states
 			this.setState({
-				cardList: matchedCards
+				cardList: matchedCards,
+				elapsedTime: 0
 			})
 		},
 		
 		render: function () {
+			var preGameDiv = 'pre-game-wrapper'
+			var preGameMessageDiv = 'pre-game-msg'
 			var postGameDiv = 'post-game-wrapper hide-msg'
 			var postGameMessageDiv = 'post-game-msg hide-msg'
 			var playAgainBtn = 'play-again-btn'
+			var playBtn = 'play-btn'
+			var totalTime = ""
 
 			if(this._endGame()){
 				postGameDiv = 'post-game-wrapper show-msg'
 				postGameMessageDiv = 'post-game-msg show-msg'
 				var totalClicks = this._countClick()
+			}
+
+			if(this.state.elapsedTime > 60){
+				totalTime = parseInt(this.state.elapsedTime/60) + ":" + this.state.elapsedTime%60
+			}
+			else{
+				totalTime = this.state.elapsedTime%60 + " seconds"
 			}
 
 			return (
@@ -200,11 +238,20 @@ const app = function() {
 					<div className="card-wrapper">
 						{this._getJsxArray(this.state.cardList)}
 					</div>
+					<div id={preGameDiv}>
+						<div className={preGameMessageDiv}>
+							<h3>Welcome to</h3>
+							<h2>Match Me If You Can</h2>
+							<p>Match all the cards with their pairs and win the game</p>
+							<button className={playAgainBtn} onClick={this._startTimer}>Play</button>
+						</div>
+					</div>
 					<div className={postGameDiv}>
 						<div className={postGameMessageDiv}>
 							<img src="/images/congrats.png"/>
 							<h2>You've matched all the cards</h2>
 							<p>Total Clicks: <span><strong>{totalClicks}</strong></span></p>
+							<p>Total Time: <span><strong>{totalTime}</strong></span></p>
 							<button className={playAgainBtn} onClick={this._replay}>Play again</button>
 						</div>
 					</div>

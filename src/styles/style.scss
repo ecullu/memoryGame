@@ -40,6 +40,11 @@ h5{
 	color: rgba(34, 38, 75, 0.7);
 }
 
+h3 {
+    color: darkkhaki;
+    letter-spacing: 0.3em;
+}
+
 .container{
 	width: 100%;
 	height: 100vh;
@@ -109,6 +114,23 @@ h5{
 	transition: opacity 1.5s ease-in
 }
 
+#pre-game-wrapper{
+    opacity: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 10, 12,0.4);
+    position: fixed;
+    transition: all 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition-delay: .1s;
+    -webkit-transition-delay: .1s;
+    -moz-transition-delay: .1s;
+    -o-transition-delay: .1s;
+}
+
 .post-game-wrapper{
     opacity: 0;
     top: 0;
@@ -130,8 +152,8 @@ h5{
     -o-transition-delay: 1s;
 }
 
-.post-game-msg{
-	background-color: snow;
+.post-game-msg, .pre-game-msg{
+	background-color: whitesmoke;
     border: 0.1em solid #f4c141;
     border-radius: 1em;
     text-align: center;
