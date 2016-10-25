@@ -93,7 +93,7 @@ const app = function() {
 			console.log('card1 >>',card1)
 		},
 
-				//increment time
+		//increment time
 		_timeCounter: function(){
 			if(!this._endGame()){
 				// console.log('elapsed time>>', this.state.elapsedTime)
@@ -261,11 +261,6 @@ const app = function() {
 	})
 
 	const Card = React.createClass({
-		// getInitialState: function(){
-		// 	return {
-		// 	cardMatchedState: this.props.card.matched
-		// 	}
-		// },
 		//When card is selected, runs a selectCard function in Gameview
 		_select: function(e){
 				this.props.selectCard(e.target.id)
@@ -275,7 +270,6 @@ const app = function() {
 			var cardDiv = 'card'
 			var imageBack = 'image-back',
 				imageFront = 'image-front'
-			// console.log('matched status', this.state.cardMatchedState)
 			//flips only 2 cards at the same time	
 			if(this.props.selectedCards.length <= 2){
 				if(this.props.selectedCards.includes(this.props.card.id)){

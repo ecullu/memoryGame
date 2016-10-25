@@ -77,19 +77,19 @@ h3 {
 }
 
 .flip-front{
-		transform: perspective(1000px) rotateY( -180deg);
-		-webkit-transform: perspective(1000px) rotateY( -180deg);
-		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
-		transition: -webkit-transform 0.5s linear 0s;
+	transform: perspective(1000px) rotateY( -180deg);
+	-webkit-transform: perspective(1000px) rotateY( -180deg);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	transition: -webkit-transform 0.5s linear 0s;
 }
 .flip-back{
-		position: absolute;
-		transform: perspective(1000px) rotateY( -0deg);
-		-webkit-transform: perspective(1000px) rotateY( -0deg);
-		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
-		transition: -webkit-transform 0.5s linear 0s;
+	position: absolute;
+	transform: perspective(1000px) rotateY( -0deg);
+	-webkit-transform: perspective(1000px) rotateY( -0deg);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	transition: -webkit-transform 0.5s linear 0s;
 }
 
 .image-front{
@@ -176,7 +176,6 @@ h3 {
 }
 
 .hide-msg{
-	/*display: none;*/
 	visibility: hidden;
 	opacity: 0;
 }
